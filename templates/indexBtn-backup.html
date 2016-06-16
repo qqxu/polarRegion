@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>极地环境监测网海洋示范系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">         <!--字符编码，防止中文乱码-->
+    <link rel="shortcut icon" href="/img/titleIcon/title.ico">     <!--浏览器地址栏左侧显示的图标-->
+
+    <!--arcgis css-->
+    <link rel="stylesheet" href="/arcgis_js_api/library/3.15/esri/css/calcite/calcite.css">
+
+    <link rel="stylesheet"  href="/arcgis_js_api/library/3.15/esri/css/esri.css">
+
+    <!--import bootstrap css-->
+    <link rel="stylesheet" href="/bootstrap-3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome-new.min.css">
+
+    <!-- Load any application specific styles -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/polarCss.css">
+
+</head>
+<body>
+<div>
+    <div id="mapDiv"></div>
+    <!--右侧功能主要内容-->
+    <div id="panContent">
+        <div id="DataSourContent"  style="display: none" class="content">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default" id="panel1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#collapseOne"
+                               href="#collapseOne">
+                                Collapsible Group Item #1
+                            </a>
+                        </h4>
+
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+                    </div>
+                </div>
+                <div class="panel panel-success" id="panel2">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#collapseTwo"
+                               href="#collapseTwo" class="collapsed">
+                                Collapsible Group Item #2
+                            </a>
+                        </h4>
+
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+                    </div>
+                </div>
+                <div class="panel panel-default" id="panel3">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#collapseThree"
+                               href="#collapseThree" class="collapsed">
+                                Collapsible Group Item #3
+                            </a>
+                        </h4>
+
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="HotAreaContent"  style="display: none" class="content">
+
+        </div>
+        <div id="TrackDataContent"  style="display: none" class="content">
+
+        </div>
+        <div id="ResStationContent"  style="display: none" class="content">
+
+        </div>
+        <div id="SeaIceContent"  style="display: none" class="content">
+
+        </div>
+        <div id="BaseMapContent"  style="display: none" class="content">
+
+        </div>
+    </div>
+    <!--左侧功能栏-->
+    <div id="panelTop" >
+        <div id="panelTitle">
+            <div  id="panelText">
+                <h1 id="title">pomp</h1>
+                <h2 id="subtitle"></h2>
+            </div>
+            <div id="panelSearch">
+                <div id="panelGeocoder"></div>
+            </div>
+        </div>
+        <div id="panelTools">
+            <div class="toolsDiv">
+                <a  id="PanelHome" href="javascript:void(0);" onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)" ><span class="glyphicon glyphicon-home glyphicon-inverse" ></span></a>
+                <div id="hPanelHome" style="display: none" class="hToolMess">
+                    <p>默认范围</p>
+                </div>
+            </div>
+
+            <div  class="toolsDiv">
+                <a  id="DataSour"  href='javascript:;' onclick='clickPopCon(this.id)'   onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)" ><span class="glyphicon glyphicon-th-list glyphicon-inverse" ></span></a>
+                <div id="hDataSour" style="display: none;" class="hToolMess">
+                    <p>数据资源</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="HotArea" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon glyphicon-retweet glyphicon-inverse" ></span></a>
+                <div id="hHotArea" style="display: none" class="hToolMess">
+                    <p>热点区域</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="TrackData" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon   glyphicon-move glyphicon-inverse" ></span></a>
+                <div id="hTrackData" style="display: none" class="hToolMess">
+                    <p>走航断面</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="ResStation" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon glyphicon-flag glyphicon-inverse" ></span></a>
+                <div id="hResStation" style="display: none" class="hToolMess">
+                    <p>考察站</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="SeaIce" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon  glyphicon-th glyphicon-inverse" ></span></a>
+                <div id="hSeaIce" style="display: none" class="hToolMess">
+                    <p>海冰</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="BaseMap" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><img  style="width:23px;" src="/img/toolbar/layers.png"></a>
+                <div id="hBaseMap" style="display: none" class="hToolMess">
+                    <p>切换底图</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript" src="/arcgis_js_api/library/3.15/init.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script>
+    function showMes(btnId){
+        /*修改当前的样式*/
+        var currentBtn= document.getElementById(btnId);
+        currentBtn.className="mouseOverClass";
+        /*显示提示文字*/
+        document.getElementById("h"+btnId).style.display="block";
+        /*修改指向函数*/
+        document.getElementById("h"+btnId).href="javascript:hideMes()";
+
+    }
+    function hideMes(btnId){
+        var currentBtn= document.getElementById(btnId);
+
+        var btnContent=document.getElementById(btnId+"Content");
+        if (btnContent!=null){
+            var mouseStatus=btnContent.style.display;
+            /*      判断是否是点击*/
+            if(mouseStatus=="none"){
+                currentBtn.className="mouseOutClass";
+            }else{
+                currentBtn.className="mouseOverClass";
+            }
+        }else{
+            currentBtn.className="mouseOutClass";
+        }
+
+        /*提示信息关闭*/
+        document.getElementById("h"+btnId).style.display="none";
+        document.getElementById("h"+btnId).href="javascript:showMes()";
+    }
+    function clickPopCon(btnId){
+        var currentBtn= document.getElementById(btnId);
+        var btnContentStatus=document.getElementById(btnId+"Content").style.display;
+        if(btnContentStatus=="none"){
+            document.getElementById(btnId+"Content").style.display="block";
+            currentBtn.className="mouseOverClass";
+        }else{
+            document.getElementById(btnId+"Content").style.display="none";
+            currentBtn.className="mouseOutClass";
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

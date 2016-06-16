@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <title>极地环境监测网海洋示范系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">         <!--字符编码，防止中文乱码-->
+    <link rel="shortcut icon" href="/img/titleIcon/title.ico">     <!--浏览器地址栏左侧显示的图标-->
+
+    <!--import bootstrap css-->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <!--my default css-->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/NavMenu.css">
+
+
+</head>
+
+<body>
+
+<div>
+    <div id="header-wrapper">
+        <div id="header" style="text-align:center">
+            <div id="logo">
+                <img src="/img/logo/pomplogo.png">
+            </div>
+        </div>
+
+    </div>
+    <div id="main">
+        <div id="menudiv">
+            <ul id="sddm">
+                <li>
+                    <a class="current" href="main" title="Home page">首页</a>
+                </li>
+                <li>
+                    <a href="demonstrateArea" title="示范区" onmouseover="mopen('m2')" onmouseout="mclosetime()">数据资源<span class="sub-arrow">...</span>
+                    </a>
+                    <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="visibility: hidden;">
+                        <a href="prydzDemonstrateArea">普里兹湾</a> <a href="sailingDemonstrate">走航断面</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="dataAndProduct" title="" onmouseover="mopen('m3')" onmouseout="mclosetime()">热点区域<span class="sub-arrow">...</span></a>
+                    <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="visibility: hidden;">
+                        <a href="realtimeData">普里兹湾</a> <a href="qrealtimeData">拉斯曼丘陵</a> <a href="deviceInfo">威德尔海</a><a href="showAchievement">埃默里冰架</a><a href="showAchievement">罗斯海</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="dataAndProduct" title="" onmouseover="mopen('m4')" onmouseout="mclosetime()">走航断面<span class="sub-arrow">...</span></a>
+                    <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="visibility: hidden;">
+                        <a href="realtimeData">科考航迹</a> <a href="qrealtimeData">航迹站点</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="dataAndProduct" title="" onmouseover="mopen('m5')" onmouseout="mclosetime()">站点<span class="sub-arrow">...</span></a>
+                    <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="visibility: hidden;">
+                        <a href="realtimeData">国内考察站</a> <a href="qrealtimeData">国外考察站</a>
+                    </div>
+                </li>
+                <li><a href="http://211.95.58.184:6999/" title="gis">海冰</a></li>
+                <li>
+                    <a href="dataAndProduct" title="" onmouseover="mopen('m6')" onmouseout="mclosetime()">地图切换<span class="sub-arrow">...</span></a>
+                    <div id="m6" onmouseover="mcancelclosetime()" onmouseout="mclosetime()" style="visibility: hidden;">
+                        <a href="realtimeData">南极</a> <a href="qrealtimeData">北极</a>
+                    </div>
+                </li>
+            </ul>
+            <div style="clear:both"></div>
+        </div>
+
+    </div>
+    <!--map-->
+    <div>
+        map
+    </div>
+</div>
+
+<!--IE 9及所有小于IE 9版本的需要加载-->
+<!--[if it IE 9]>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+<script src="/assets/js/jquery-2.1.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script>
+    var timeout = 500;
+    var closetimer = 0;
+    var ddmenuitem = 0;
+
+    // open hidden layer
+    function mopen(id) {
+        // cancel close timer
+        mcancelclosetime();
+
+        // close old layer
+        if (ddmenuitem)
+            ddmenuitem.style.visibility = 'hidden';
+
+        // get new layer and show it
+        ddmenuitem = document.getElementById(id);
+        ddmenuitem.style.visibility = 'visible';
+
+    }
+    // close showed layer
+    function mclose() {
+        if (ddmenuitem)
+            ddmenuitem.style.visibility = 'hidden';
+    }
+
+    // go close timer
+    function mclosetime() {
+        closetimer = window.setTimeout(mclose, timeout);
+    }
+
+    // cancel close timer
+    function mcancelclosetime() {
+        if (closetimer) {
+            window.clearTimeout(closetimer);
+            closetimer = null;
+        }
+    }
+
+    // close layer when click-out
+    document.onclick = mclose;
+</script>
+</body>
+</html>

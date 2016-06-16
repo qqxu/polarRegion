@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>极地环境监测网海洋示范系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">         <!--字符编码，防止中文乱码-->
+    <link rel="shortcut icon" href="/img/titleIcon/title.ico">     <!--浏览器地址栏左侧显示的图标-->
+
+    <!--arcgis css-->
+    <link rel="stylesheet" href="/arcgis_js_api/library/3.15/esri/css/calcite/calcite.css">
+
+    <link rel="stylesheet"  href="/arcgis_js_api/library/3.15/esri/css/esri.css">
+
+    <!--import bootstrap css-->
+    <link rel="stylesheet" href="/bootstrap-3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome-new.min.css">
+
+    <!--kendo样式-->
+    <link rel="stylesheet" href="/css/kendo.common.min.css">
+    <link rel="stylesheet" href="/css/kendo.default.min.css">
+
+    <!-- Load any application specific styles -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <!--polar css-->
+    <link rel="stylesheet" href="/css/polarCss.css">
+
+    <!--只能放在这里，不能放在下面，否则会报multidefined的错误-->
+    <script src="/js/jquery.min.js"></script>
+    <script  src="/js/kendo.all.min.js"></script>
+
+
+
+</head>
+<body>
+<div>
+    <div id="mapDiv"></div>
+
+
+    <!--右侧功能主要内容-->
+    <div id="panContent">
+        <div id="DataSourContent"  style="display: none" class="btnCon">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default" id="panel1">
+                    <!--<div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#collapseOne"
+                               href="#collapseOne">
+                                Collapsible Group Item #1
+                            </a>
+                        </h4>
+
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                          you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>-->
+                    <div id=""></div>
+                </div>
+            </div>
+        </div>
+        <div id="HotAreaContent"  style="display: none" class="btnCon">
+
+        </div>
+        <div id="TrackDataContent"  style="display: none" class="btnCon">
+
+        </div>
+        <div id="ResStationContent"  style="display: none" class="btnCon">
+
+        </div>
+        <div id="SeaIceContent"  style="display: none" class="btnCon">
+
+        </div>
+        <div id="BaseMapContent"  style="display: none" class="btnCon">
+
+        </div>
+    </div>
+    <!--左侧功能栏-->
+    <div id="panelTop" >
+        <div id="panelTitle">
+            <div  id="panelText">
+                <h1 id="title">pomp</h1>
+                <h2 id="subtitle"></h2>
+            </div>
+            <div id="panelSearch">
+                <div id="searchDiv" class="search">
+                    <span class="k-uniE600"></span>
+                </div>
+            </div>
+        </div>
+        <div id="panelTools">
+
+            <div  class="toolsDiv">
+                <div id="PanelHome" onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"></div>
+                <div id="hPanelHome" style="display: none" class="hToolMess">
+                    <p>默认范围</p>
+                </div>
+            </div>
+
+
+            <div  class="toolsDiv">
+                <a  id="DataSour"  href='javascript:;' onclick='clickPopCon(this.id)'   onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)" ><span class="glyphicon glyphicon-th-list glyphicon-inverse" ></span></a>
+                <div id="hDataSour" style="display: none;" class="hToolMess">
+                    <p>数据资源</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="HotArea" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon glyphicon-retweet glyphicon-inverse" ></span></a>
+                <div id="hHotArea" style="display: none" class="hToolMess">
+                    <p>热点区域</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="TrackData" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon   glyphicon-move glyphicon-inverse" ></span></a>
+                <div id="hTrackData" style="display: none" class="hToolMess">
+                    <p>走航断面</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="ResStation" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon glyphicon-flag glyphicon-inverse" ></span></a>
+                <div id="hResStation" style="display: none" class="hToolMess">
+                    <p>考察站</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="SeaIce" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class="glyphicon  glyphicon-th glyphicon-inverse" ></span></a>
+                <div id="hSeaIce" style="display: none" class="hToolMess">
+                    <p>海冰</p>
+                </div>
+            </div>
+            <div  class="toolsDiv">
+                <a  id="BaseMap" href='javascript:;' onclick='clickPopCon(this.id)'  onmouseover="showMes(this.id)" onmouseout="hideMes(this.id)"><span class=" glyphicon glyphicon-book glyphicon-inverse" ></span></a>
+
+                <div id="hBaseMap" style="display: none" class="hToolMess">
+                    <p>切换底图</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--默认加载的普里兹湾示范区，点击会弹出的框-->
+
+
+
+</div>
+
+<div id="hotAreaInfo"></div>
+<script type="text/javascript" src="/arcgis_js_api/library/3.15/init.js"></script>
+
+
+<script src="/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+
+<!--页面左上角的btn，鼠标移入移出的功能，点击弹出content-->
+<script src="/js/polarJs/btnWithContent.js"></script>
+
+<script>
+    /*叠加底图，新建鹰眼图、搜索、比例尺小功能*/
+    var map,search,scalebar,homeButton;
+    /*定义全局变量，根地址，如果是在开发请用localhost,如果部署项目，打开第二个,第二个是部署服务器的IP*/
+    var basicUrl="http://211.95.58.184:6999";
+    function resetMap(mapUrl,option){
+        var test=document.getElementById("hotAreaInfo");
+        require([
+                    "dojo/dom",
+                    "dojo/on",
+                    "dojo/parser",
+                    "esri/map",
+                    "esri/layers/ArcGISTiledMapServiceLayer","esri/layers/FeatureLayer","esri/layers/ArcGISDynamicMapServiceLayer",
+                    "esri/dijit/OverviewMap","esri/dijit/Search","esri/dijit/Scalebar","esri/dijit/HomeButton",
+                    "esri/InfoTemplate",
+                    "esri/SpatialReference",
+                    "esri/geometry/Point",
+                    "esri/dijit/Measurement",
+                    "esri/tasks/GeometryService",
+
+
+                    "esri/Color",
+                    "dojo/keys",
+
+
+                    "esri/config",
+                    "esri/sniff",
+
+                    "esri/SnappingManager",
+
+
+                    "esri/renderers/SimpleRenderer",
+
+                    "esri/symbols/SimpleLineSymbol",
+                    "esri/symbols/SimpleFillSymbol",
+
+
+                    "dijit/layout/BorderContainer",
+                    "dijit/layout/ContentPane",
+                    "dijit/TitlePane",
+                    "dijit/form/CheckBox",
+                    "dojo/domReady!"
+
+                ],
+                function (dom,
+                          on,
+                          parser,
+                          Map,
+                          ArcGISTiledMapServiceLayer,FeatureLayer,ArcGISDynamicMapServiceLayer,
+                          OverviewMap,Search,Scalebar,HomeButton,
+                          InfoTemplate,
+                          SpatialReference,
+                          Point,
+                          Measurement,
+                          GeometryService,
+                          Color, keys,
+                          esriConfig, has,  SnappingManager, SimpleRenderer,  SimpleLineSymbol, SimpleFillSymbol
+                        ){
+
+                    if(map){
+                        map.destroy();
+                    }
+                    map = new Map("mapDiv", {
+                        maxZoom:6,
+                        minZoom:2,
+                        sliderOrientation : "vertical"
+                    });
+
+                    var baseMapLayer;
+                    switch(option.type){
+                        case "ArcGISDynamicMapServiceLayer":
+                        {
+                            baseMapLayer=new ArcGISDynamicMapServiceLayer(mapUrl);
+                            break;
+                        }
+                        case "ArcGISTiledMapServiceLayer":{
+                            baseMapLayer=new ArcGISTiledMapServiceLayer(mapUrl);
+                            break;
+                        }
+                        default: console.log('type of map is unused !')
+                    }
+                    map.addLayer(baseMapLayer);
+                    baseMapLayer.on('load',function(){
+    //                map.setExtent(baseMapLayer.initialExtent);
+    //                map.setZoom(3);
+                        map.centerAndZoom(new Point(890398.0785432494,366273.41127856233, new SpatialReference({ wkid: 102021 })),3);
+                    });
+                    /* 默认加载热点区域轮廓*/
+                    var hotFeaLayer = new FeatureLayer("http://211.95.58.184:6080/arcgis/rest/services/pulizArea/MapServer/0",{
+                        "opacity": 0.5,
+                        outFields: ["*"]
+                    });
+                    map.addLayer(hotFeaLayer);
+                    on(hotFeaLayer,"click",function(){
+                        var test=document.getElementById("hotAreaInfo");
+                        var hotAreaInfo = $("#hotAreaInfo").kendoWindow({
+                            width: "543px",
+                            height:"361px",
+                            content: basicUrl+"/hotAreaData"
+
+                        });
+                        hotAreaInfo.data("kendoWindow").center().open();
+                    });
+
+                    /*比例尺*/
+                    if(scalebar){
+                        scalebar.destroy();
+                    }
+                    scalebar= new Scalebar({
+                        map: map,
+                        attachTo: "bottom-left",
+                        visible: true,
+                        scalebarUnit: "metric"
+
+                    });
+                    /*返回主页*/
+                    if( homeButton){
+                        homeButton.destroy();
+                    }
+                    homeButton = new HomeButton({
+                        map: map
+                    }, dojo.create('homeButton'));
+                    dojo.place(homeButton.domNode,dojo.byId('PanelHome'));
+
+                    homeButton.startup();
+
+
+                    if(search){
+                        search.destroy();
+                    }
+                    search = new Search({
+                        enableLabel: false,
+                        enableInfoWindow: true,
+                        showInfoWindowOnSelect: false,
+                        map: map
+                    }, dojo.create('search'));
+                    dojo.place(search.domNode,dojo.byId('searchDiv'));
+                    search.startup();
+
+                    map.on("load",function(){
+
+
+                    })
+
+                });
+    }
+
+    $(function(){
+        resetMap("http://211.95.58.184:6080/arcgis/rest/services/allSouthXqq/MapServer",{type:"ArcGISTiledMapServiceLayer"});
+    })
+
+
+
+</script>
+</body>
+</html>

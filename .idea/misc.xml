@@ -3,7 +3,7 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="IdProvider" IDEtalkID="2B53C9B9F071DCB6593C450305F82C24" />
+  <component name="IdProvider" IDEtalkID="E2A616682464F1F5E0F267EADEF5B27D" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -121,6 +121,22 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 
